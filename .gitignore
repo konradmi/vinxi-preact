@@ -9,6 +9,7 @@ playwright-report
 stats.html
 .fixtures
 *.code-workspace
+app.config.timestamp_*
 
 .vinxi
 
