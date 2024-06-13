@@ -1,5 +1,5 @@
-import { hydrate } from 'preact'
-import Counter from "./Counter";
+import { startClient } from '../framework/client'
 
-const root = document.getElementById('app')!
-hydrate(<Counter />, root);
+import Counter from './src/Counter'
+
+startClient(<Counter />)
