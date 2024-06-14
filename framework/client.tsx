@@ -1,7 +1,14 @@
-import preact from 'preact'
 import { hydrate } from 'preact'
+import App from './App'
+import fileRoutes from "vinxi/routes";
+import { getManifest } from "vinxi/manifest";
 
-export const startClient = (app: preact.ComponentChildren) => {
+const clientManifest = getManifest("client");
+const serverManifest = getManifest("ssr");
+
+
+export const startClient = () => {
   const root = document.getElementById('app')!
-  hydrate(app, root);
+
+  hydrate(<App fileRoutes={fileRoutes} clientManifest={clientManifest} serverManifest={serverManifest}/>, root);
 }

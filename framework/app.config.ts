@@ -6,11 +6,16 @@ import path from "path";
 export const createFrameworkApp = () => {
   return createApp({
     routers: [
-      // {
-      //   name: "public",
-      //   type: "static",
-      //   dir: "./public",
-      // },
+      {
+        name: "public",
+        type: "static",
+        dir: "./public",
+      },
+      {
+        name: "lazy",
+        type: "static",
+        dir: "./_build/@fs",
+      },
       {
         name: "client",
         type: "client",
