@@ -43,13 +43,10 @@ export default function lazyRoute(
 		if (import.meta.env.DEV) {
 			let manifest = import.meta.env.SSR ? serverManifest : clientManifest;
 			const mod = await manifest.inputs[component.src].import();
-			// invariant(
-			// 	mod[exported],
-			// 	`Module ${component.src} does not export ${exported}`,
-			// );
 
 			const Component = mod[exported];
 			let assets = await clientManifest.inputs?.[component.src].assets();
+
 			const styles = assets.filter((asset) => asset.tag === "style");
 
 			if (typeof window !== "undefined" && import.meta.hot) {

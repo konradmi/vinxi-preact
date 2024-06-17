@@ -1,0 +1,11 @@
+.Counter {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.Counter__count {
+  font-weight: 600;
+  color: blue;
+}

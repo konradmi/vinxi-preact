@@ -1,15 +1,17 @@
 import preact from 'preact'
+import { Suspense } from 'preact/compat'
 
 const Document = (props: {
   children: preact.ComponentChildren,
   manifest: object,
-  routes: object,
-  assets: preact.ComponentChildren[]
+  assets: preact.ComponentChildren
 }) => {
   return (
     <html>
       <head>
-        {props.assets}
+        <Suspense fallback='Loading.....'>
+          {props.assets}
+        </Suspense>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width" />
         <title>Vinxi Preact</title>
