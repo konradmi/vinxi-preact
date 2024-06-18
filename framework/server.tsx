@@ -19,10 +19,11 @@ export const startServer = () => eventHandler(async (event) => {
     clientManifest,
   )
 
+  const scriptTag = <script type="module" src={scriptSrc}></script>
+
   const renderedApp = await renderToStringAsync(
-    <Document manifest={manifest} assets={<Assets/>}>
+    <Document manifest={manifest} assets={<Assets/>} scriptTag={scriptTag}>
       <App url={event.node.req.url}/>
-      <script type="module" src={scriptSrc} />
     </Document>
   );
 
