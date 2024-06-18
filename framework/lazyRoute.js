@@ -45,6 +45,7 @@ export default function lazyRoute(
 			const mod = await manifest.inputs[component.src].import();
 
 			const Component = mod[exported];
+
 			let assets = await clientManifest.inputs?.[component.src].assets();
 
 			const styles = assets.filter((asset) => asset.tag === "style");

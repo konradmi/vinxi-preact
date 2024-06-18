@@ -5,11 +5,9 @@ import Document from "./Document"
 import App from "./App"
 import { createAssets } from './assets' 
 import type { Asset } from "./types";
-import fileRoutes from "vinxi/routes";
 
 export const startServer = () => eventHandler(async (event) => {
   const clientManifest = getManifest("client");
-  const serverManifest = getManifest("ssr");
 
   const clientHandler = clientManifest.inputs[clientManifest.handler]
   const scriptSrc = clientHandler.output.path;
@@ -21,9 +19,9 @@ export const startServer = () => eventHandler(async (event) => {
     clientManifest,
   )
 
-  const renderedApp = renderToStringAsync(
+  const renderedApp = await renderToStringAsync(
     <Document manifest={manifest} assets={<Assets/>}>
-      <App fileRoutes={fileRoutes} url={event.node.req.url} clientManifest={clientManifest} serverManifest={serverManifest}/>
+      <App url={event.node.req.url}/>
       <script type="module" src={scriptSrc} />
     </Document>
   );

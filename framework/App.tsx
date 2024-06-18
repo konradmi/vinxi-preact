@@ -1,24 +1,24 @@
-import { Router } from 'preact-router'
+import { Router, Route } from 'preact-router'
 import { Suspense } from 'preact/compat'
-import { RouteModule } from "vinxi/routes"
+import { getManifest } from "vinxi/manifest"
+import fileRoutes from "vinxi/routes";
+
 import lazyRoute from './lazyRoute'
 
 
 type AppProps = {
-  fileRoutes:RouteModule[],
   url?: string // url defined means SSR mode.
-  serverManifest: any
-  clientManifest: any
 }
-const App = ({ fileRoutes, url, clientManifest, serverManifest }: AppProps) => {
+
+const clientManifest = getManifest("client");
+const serverManifest = getManifest("ssr");
+
+const App = ({ url }: AppProps) => {
   return (
     <Suspense fallback='Loading.....'>
       <Router url={url}>
         {
-          fileRoutes.map(route => {
-            const Component = lazyRoute(route.$component, clientManifest, serverManifest )
-            return <Component path={route.path} />
-          })
+          fileRoutes.map(route => <Route key={route.path} path={route.path} component={lazyRoute(route.$component, clientManifest, serverManifest)} />)
         }
       </Router>
     </Suspense>

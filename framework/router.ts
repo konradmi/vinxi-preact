@@ -16,7 +16,7 @@ export class MyFileSystemRouter extends BaseFileSystemRouter {
       path: this.toPath(filePath),
       $component: {
         src: filePath,
-        pick: ["default"],
+        pick: ["default", "$css"],
       },
     };
   }

@@ -12,11 +12,6 @@ export const createFrameworkApp = () => {
         dir: "./public",
       },
       {
-        name: "lazy",
-        type: "static",
-        dir: "./_build/@fs",
-      },
-      {
         name: "client",
         type: "client",
         handler: "./app/entry-client.tsx",
