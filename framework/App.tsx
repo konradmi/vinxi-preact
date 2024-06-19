@@ -14,7 +14,7 @@ const serverManifest = getManifest("ssr");
 
 const App = ({ url }: AppProps) => {
   return (
-    <Suspense fallback='Loading.....'>
+    <Suspense fallback={<></>}>
       <Router url={url}>
         {
           fileRoutes.map(route => <Route key={route.path} path={route.path} component={lazyRoute(route.$component, clientManifest, serverManifest)} />)

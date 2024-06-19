@@ -10,7 +10,7 @@ const Document = (props: {
   return (
     <html>
       <head>
-        <Suspense fallback='Loading.....'>
+        <Suspense fallback={<></>}>
           {props.assets}
         </Suspense>
         <meta charSet="utf-8" />
