@@ -7,6 +7,7 @@ export default function Counter() {
 
   return (
     <div className='Counter'>
+        <a href='/about'>About</a>
         <p className='Counter__count'>{count}</p>
         <button onClick={() => setCount(count + 1)}>Increment by 1</button>
     </div>

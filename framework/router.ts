@@ -1,4 +1,6 @@
 import { BaseFileSystemRouter, cleanPath } from "vinxi/fs-router";
+import { posix } from "path";
+import fg from "fast-glob";
 
 export class MyFileSystemRouter extends BaseFileSystemRouter {
   toPath(src: string) {
@@ -8,7 +10,9 @@ export class MyFileSystemRouter extends BaseFileSystemRouter {
       .replace(/index$/, "")
       .toLowerCase()
 
-    return routePath?.length > 0 ? `/${routePath}` : "/";
+    const trimmedPath = routePath.endsWith("/") ? routePath.slice(0, -1) : routePath;
+    
+    return trimmedPath?.length > 0 ? `/${trimmedPath}` : "/";
   }
 
   toRoute(filePath: string) {
@@ -20,4 +24,11 @@ export class MyFileSystemRouter extends BaseFileSystemRouter {
       },
     };
   }
+
+  glob() {
+		return (
+			posix.join(fg.convertPathToPattern(this.config.dir), "**/*index*") +
+			`.{${this.config.extensions.join(",")}}`
+		);
+	}
 }
