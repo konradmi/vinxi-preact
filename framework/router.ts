@@ -9,6 +9,9 @@ export class MyFileSystemRouter extends BaseFileSystemRouter {
       .slice(1)
       .replace(/index$/, "")
       .toLowerCase()
+      .replace(/\[([^\/]+)\]/g, (_, m) => {
+        return `:${m}`;
+      });
 
     const trimmedPath = routePath.endsWith("/") ? routePath.slice(0, -1) : routePath;
     
