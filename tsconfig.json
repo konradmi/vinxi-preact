@@ -5,6 +5,7 @@
     "jsx": "react-jsx",
     "jsxImportSource": "preact",
     "module": "ESNext",
-    "moduleResolution": "Bundler"
+    "moduleResolution": "Bundler",
+    "types": ["vite/client"]
   }
 }

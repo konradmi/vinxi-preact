@@ -4,7 +4,6 @@ import { renderToStringAsync } from "preact-render-to-string"
 import Document from "./Document"
 import App from "./App"
 import { createAssets } from './assets' 
-import type { Asset } from "./types";
 
 export const startServer = () => eventHandler(async (event) => {
   const clientManifest = getManifest("client");

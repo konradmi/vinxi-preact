@@ -1,14 +1,9 @@
 import { Fragment, createElement } from "preact";
 import { lazy, forwardRef, useLayoutEffect } from 'preact/compat';
 import { cleanupStyles, preloadStyles, updateStyles } from "vinxi/css";
+import type { Asset, Manifest, LazyComponent } from "./types";
 
-export function renderAsset({
-	tag,
-	attrs: { key, ...attrs } = {
-		key: undefined,
-	},
-	children,
-}) {
+export const renderAsset = ({ tag, attrs: { key, ...attrs } = { key: undefined }, children }: Asset) => {
 	switch (tag) {
 		case "script":
 			if (attrs.src) {
@@ -34,19 +29,19 @@ export function renderAsset({
 }
 
 export default function lazyRoute(
-	component,
-	clientManifest,
-	serverManifest,
+	component: LazyComponent,
+	clientManifest: Manifest,
+	serverManifest: Manifest,
 	exported = "default",
 ) {
 	return lazy(async () => {
 		if (import.meta.env.DEV) {
-			let manifest = import.meta.env.SSR ? serverManifest : clientManifest;
+			const manifest = import.meta.env.SSR ? serverManifest : clientManifest;
 			const mod = await manifest.inputs[component.src].import();
 
 			const Component = mod[exported];
 
-			let assets = await clientManifest.inputs?.[component.src].assets();
+			const assets = await clientManifest.inputs?.[component.src].assets() as unknown as Asset[];
 
 			const styles = assets.filter((asset) => asset.tag === "style");
 
@@ -78,7 +73,7 @@ export default function lazyRoute(
 			const mod = await component.import();
 
 			const Component = mod[exported];
-			let assets = await clientManifest.inputs?.[component.src].assets();
+			const assets = await clientManifest.inputs?.[component.src].assets() as unknown as Asset[];
 
 			if (typeof window !== "undefined") {
 				const styles = assets.filter(
