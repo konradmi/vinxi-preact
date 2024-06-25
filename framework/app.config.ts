@@ -1,6 +1,6 @@
 import { createApp } from "vinxi";
 import { preact } from "@preact/preset-vite";
-import { MyFileSystemRouter } from "./router";
+import { MyFileSystemRouter } from "./fsRouter";
 import path from "path";
 
 export const createFrameworkApp = () => {

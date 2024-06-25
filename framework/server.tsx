@@ -4,6 +4,7 @@ import { renderToStringAsync } from "preact-render-to-string"
 import Document from "./Document"
 import App from "./App"
 import { createAssets } from './assets' 
+import { SSRRedirect } from './types'
 
 export const startServer = () => eventHandler(async (event) => {
   const clientManifest = getManifest("client");
@@ -20,12 +21,22 @@ export const startServer = () => eventHandler(async (event) => {
 
   const scriptTag = <script type="module" src={scriptSrc}></script>
 
-  const renderedApp = await renderToStringAsync(
-    <Document manifest={manifest} assets={<Assets/>} scriptTag={scriptTag}>
-      <App url={event.node.req.url}/>
-    </Document>
-  );
+  try {
+    const renderedApp = await renderToStringAsync(
+      <Document manifest={manifest} assets={<Assets/>} scriptTag={scriptTag}>
+        <App url={event.node.req.url}/>
+      </Document>
+    );
 
-  event.node.res.setHeader("Content-Type", "text/html");
-  return renderedApp;
+    event.node.res.setHeader("Content-Type", "text/html");
+    return renderedApp;
+  } catch (e) {
+    if (e instanceof SSRRedirect) {
+      event.node.res.statusCode = 302;
+      event.node.res.setHeader("Location", e.to);
+      event.node.res.end();
+    } else {
+      throw e;
+    }
+  }
 })

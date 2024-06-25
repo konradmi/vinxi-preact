@@ -18,3 +18,9 @@ export type LazyComponent = {
   import: () => Promise<any>;
   require: () => any;
 }
+
+export class SSRRedirect extends Error {
+  constructor(public to: string) {
+    super(to)
+  }
+}
