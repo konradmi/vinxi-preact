@@ -10,7 +10,7 @@ export const createFrameworkApp = () => {
       {
         name: "public",
         type: "static",
-        dir: "./public",
+        dir: "./app/public",
       },
       {
         name: "client",

@@ -15,6 +15,7 @@ const Document = (props: {
         </Suspense>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width" />
+        <link rel="icon" type="image/x-icon" href="/app/public/favicon.ico"></link>
         <title>Vinxi Preact</title>
         <script dangerouslySetInnerHTML={{
           __html: `window.manifest = ${JSON.stringify(props.manifest)};`
