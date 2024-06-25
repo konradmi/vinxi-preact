@@ -2,6 +2,7 @@ import { createApp } from "vinxi";
 import { preact } from "@preact/preset-vite";
 import { MyFileSystemRouter } from "./fsRouter";
 import path from "path";
+import { serverFunctions } from "@vinxi/server-functions/plugin";
 
 export const createFrameworkApp = () => {
   return createApp({
@@ -25,10 +26,11 @@ export const createFrameworkApp = () => {
             app
           );
         },
-        plugins: () => [preact()],
+        plugins: () => [preact(), serverFunctions.client()],
         target: "browser",
         base: "/_build",
       },
+      serverFunctions.router(),
       {
         name: "ssr",
         type: "http",
