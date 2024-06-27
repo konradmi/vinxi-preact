@@ -15,7 +15,6 @@ export type Manifest = ReturnType<typeof getManifest>
 
 export type LazyComponent = {
   src: string;
-  import: () => Promise<any>;
   require: () => any;
 }
 
@@ -23,4 +22,9 @@ export class SSRRedirect extends Error {
   constructor(public to: string) {
     super(to)
   }
+}
+
+export type Loader = {
+  src: string;
+  require: () => { loader: () => Promise<any> };
 }

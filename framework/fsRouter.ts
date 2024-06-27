@@ -1,4 +1,4 @@
-import { BaseFileSystemRouter, cleanPath } from "vinxi/fs-router";
+import { BaseFileSystemRouter, cleanPath, analyzeModule } from "vinxi/fs-router";
 import { posix } from "path";
 import fg from "fast-glob";
 
@@ -19,12 +19,20 @@ export class MyFileSystemRouter extends BaseFileSystemRouter {
   }
 
   toRoute(filePath: string) {
+    const [_, exports] = analyzeModule(filePath);
+    const hasRouteConfig = !!exports.find(e => e.n === "loader");
     return {
       path: this.toPath(filePath),
       $component: {
         src: filePath,
         pick: ["default", "$css"],
       },
+      $$loader: hasRouteConfig
+        ? {
+            src: filePath,
+            pick: ["loader"]
+          }
+        : undefined,
     };
   }
 

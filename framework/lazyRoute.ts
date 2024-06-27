@@ -1,7 +1,7 @@
 import { Fragment, createElement } from "preact";
 import { lazy, forwardRef, useLayoutEffect } from 'preact/compat';
 import { cleanupStyles, preloadStyles, updateStyles } from "vinxi/css";
-import type { Asset, Manifest, LazyComponent } from "./types";
+import type { Asset, Manifest, LazyComponent, Loader } from "./types";
 
 export const renderAsset = ({ tag, attrs: { key, ...attrs } = { key: undefined }, children }: Asset) => {
 	switch (tag) {
@@ -30,6 +30,7 @@ export const renderAsset = ({ tag, attrs: { key, ...attrs } = { key: undefined }
 
 export default function lazyRoute(
 	component: LazyComponent,
+	loader: Loader | undefined,
 	clientManifest: Manifest,
 	serverManifest: Manifest,
 	exported = "default",
@@ -51,6 +52,8 @@ export default function lazyRoute(
 				});
 			}
 
+			const loaderProps = await loader?.require().loader()
+
 			const Comp = forwardRef((props, ref) => {
 				if (typeof window !== "undefined") { 
 					useLayoutEffect(() => {
@@ -64,7 +67,7 @@ export default function lazyRoute(
 				return createElement(
 					Fragment,
 					null,
-					createElement(Component, { ...props, ref: ref }),
+					createElement(Component, { ...props, ...loaderProps, ref: ref }),
 					...assets.map((asset) => renderAsset(asset)),
 				);
 			});

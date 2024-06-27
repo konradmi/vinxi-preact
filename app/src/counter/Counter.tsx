@@ -2,7 +2,11 @@ import { useState } from 'preact/hooks'
 
 import './Counter.css'
 
-export default function Counter() {
+type CounterProps = {
+  posts: { title: string, body: string }[]
+}
+
+export default function Counter({ posts }: CounterProps) {
   const [count, setCount] = useState(0);
   
   const handleClick = () => {
@@ -11,6 +15,7 @@ export default function Counter() {
 
   return (
     <div className='Counter'>
+      <h1>{JSON.stringify(posts)}</h1>
       <div className='Counter__nav'>
         <a href='/about'>About</a>
       </div>
