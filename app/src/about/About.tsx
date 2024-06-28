@@ -1,11 +1,14 @@
+import preact from 'preact'
+
 import './About.css'
 
-export default function About() {
+export default function About({ children }: { children: preact.ComponentChildren }) {
   return (
     <div className='About'>
       <div className='About__nav'>
         <a href='/counter'>Counter</a>
       </div>
+      {children}
       <div className='About__content'>
         <h1>About</h1>
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam ipsum lacus, commodo vitae orci a, ullamcorper ullamcorper dui. Sed accumsan dapibus sagittis. Morbi posuere ullamcorper neque ut eleifend. Nunc dictum lacus nec interdum tempor. Quisque semper ligula sed metus dapibus, vitae vestibulum urna lobortis. Etiam efficitur non mauris ac bibendum. Praesent lacinia lectus sed enim tristique mollis. Ut non nunc quis augue lobortis commodo. Pellentesque pretium risus nisi, ac congue dui dignissim et. Fusce mi tortor, iaculis a luctus eget, porttitor nec orci. Maecenas pretium tempus elementum.

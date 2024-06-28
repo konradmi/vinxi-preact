@@ -85,12 +85,14 @@ export default function lazyRoute(
 				preloadStyles(styles);
 			}
 
+			const loaderProps = await loader?.require().loader()
+
 			const Comp = forwardRef((props, ref) => {
 				return createElement(
 					Fragment,
 					null,
 					...assets.map((asset) => renderAsset(asset)),
-					createElement(Component, { ...props, ref: ref }),
+					createElement(Component, { ...props, ...loaderProps, ref: ref }),
 				);
 			});
 			return { default: Comp };

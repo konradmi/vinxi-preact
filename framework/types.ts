@@ -15,6 +15,7 @@ export type Manifest = ReturnType<typeof getManifest>
 
 export type LazyComponent = {
   src: string;
+  import: () => Promise<any>;
   require: () => any;
 }
 
