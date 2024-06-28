@@ -19,7 +19,7 @@ export const createFrameworkApp = () => {
         routes: (router, app) => {
           return new MyFileSystemRouter(
             {
-              dir: path.join(path.resolve(path.dirname('')), "./app/src"),
+              dir: path.join(path.resolve(path.dirname('')), "./app/src/routes"),
               extensions: ["jsx", "js", "tsx", "ts"],
             },
             router,
@@ -38,7 +38,7 @@ export const createFrameworkApp = () => {
         routes: (router, app) => {
           return new MyFileSystemRouter(
             {
-              dir: path.join(path.resolve(path.dirname('')), "./app/src"),
+              dir: path.join(path.resolve(path.dirname('')), "./app/src/routes"),
               extensions: ["jsx", "js", "tsx", "ts"],
             },
             router,

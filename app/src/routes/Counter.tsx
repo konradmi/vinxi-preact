@@ -6,6 +6,13 @@ type CounterProps = {
   posts: { title: string, body: string }[]
 }
 
+export const loader = async () => {
+  const posts = await (await fetch('https://jsonplaceholder.typicode.com/posts')).json() as {title: string, body: string }[]
+  return {
+    posts: posts.slice(2)
+  }
+}
+
 export default function Counter({ posts }: CounterProps) {
   const [count, setCount] = useState(0);
   
