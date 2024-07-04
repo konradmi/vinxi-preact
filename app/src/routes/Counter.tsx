@@ -22,7 +22,7 @@ export default function Counter({ posts }: CounterProps) {
 
   return (
     <div className='Counter'>
-      <h1>{JSON.stringify(posts)}</h1>
+      <h1>{JSON.stringify(posts).slice(0, 100)}</h1>
       <div className='Counter__nav'>
         <a href='/about'>About</a>
       </div>

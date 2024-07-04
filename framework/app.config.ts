@@ -1,6 +1,7 @@
 import { createApp } from "vinxi";
 import { preact } from "@preact/preset-vite";
 import { MyFileSystemRouter } from "./fsRouter";
+import { ApiRoutesRouting } from "./apiRouter";
 import path from "path";
 import { serverFunctions } from "@vinxi/server-functions/plugin";
 
@@ -20,7 +21,7 @@ export const createFrameworkApp = () => {
           return new MyFileSystemRouter(
             {
               dir: path.join(path.resolve(path.dirname('')), "./app/src/routes"),
-              extensions: ["jsx", "js", "tsx", "ts"],
+              extensions: ["jsx", "tsx"],
             },
             router,
             app
@@ -32,6 +33,23 @@ export const createFrameworkApp = () => {
       },
       serverFunctions.router(),
       {
+        name: "api",
+        type: "http",
+        handler: "./framework/entry-api.ts",
+        base: "/api",
+        routes: (router, app) => {
+          return new ApiRoutesRouting(
+            {
+              dir: path.join(path.resolve(path.dirname('')), "./app/src/routes/api"),
+              extensions: ["ts", "js"],
+            },
+            router,
+            app
+          );
+        },
+        target: "server",
+      },
+      {
         name: "ssr",
         type: "http",
         handler: "./app/entry-server.tsx",
@@ -39,7 +57,7 @@ export const createFrameworkApp = () => {
           return new MyFileSystemRouter(
             {
               dir: path.join(path.resolve(path.dirname('')), "./app/src/routes"),
-              extensions: ["jsx", "js", "tsx", "ts"],
+              extensions: ["jsx", "tsx"],
             },
             router,
             app

@@ -1,4 +1,5 @@
 import { getManifest } from "vinxi/manifest"
+import { NodeEventContext } from "vinxi/http"
 
 export type Asset = {
   tag: 'script' | 'link' | 'style',
@@ -29,3 +30,9 @@ export type Loader = {
   src: string;
   require: () => { loader: () => Promise<any> };
 }
+
+export type HTTPMethod = "GET" | "POST" | "PUT" | "DELETE" | "PATCH";
+
+export type Request = NodeEventContext["req"]
+export type Response = NodeEventContext["res"]
+
