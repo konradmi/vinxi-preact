@@ -33,6 +33,6 @@ export type Loader = {
 
 export type HTTPMethod = "GET" | "POST" | "PUT" | "DELETE" | "PATCH";
 
-export type Request = NodeEventContext["req"]
+export type Request = NodeEventContext["req"] & { params: Record<string, string> }
 export type Response = NodeEventContext["res"]
 
