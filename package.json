@@ -4,7 +4,7 @@
   "description": "",
   "type": "module",
   "scripts": {
-    "dev": "yarn link preact-start && vinxi dev",
+    "dev": "yarn link preact-start && yarn link preact && yarn link preact-router && vinxi dev",
     "build": "vinxi build",
     "start": "vinxi start"
   },
