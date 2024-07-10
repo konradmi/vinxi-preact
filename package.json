@@ -4,7 +4,7 @@
   "description": "",
   "type": "module",
   "scripts": {
-    "dev": "vinxi dev",
+    "dev": "yarn link preact-start && vinxi dev",
     "build": "vinxi build",
     "start": "vinxi start"
   },
@@ -12,14 +12,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@vinxi/server-functions": "^0.3.3",
-    "preact": "^10.22.0",
-    "preact-render-to-string": "^6.5.4",
+    "@preact/preset-vite": "^2.8.3",
+    "preact": "^10.22.1",
     "preact-router": "^4.1.2",
-    "radix3": "^1.1.2",
     "vinxi": "^0.3.11"
-  },
-  "devDependencies": {
-    "@preact/preset-vite": "^2.8.2"
   }
 }

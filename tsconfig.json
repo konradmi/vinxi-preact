@@ -1,11 +1,14 @@
 {
   "compilerOptions": {
-    "strict": true,
     "esModuleInterop": true,
     "jsx": "react-jsx",
     "jsxImportSource": "preact",
     "module": "ESNext",
+    "target": "ESNext",
+    "allowJs": true,
+    "strict": true,
+    "noEmit": true,
     "moduleResolution": "Bundler",
-    "types": ["vite/client"]
-  }
+    "types": ["vinxi/types/client"]
+  },
 }

@@ -1,3 +1,3 @@
-import { startClient } from '../framework/client'
+import { startClient } from 'preact-start/client'
 
 startClient()

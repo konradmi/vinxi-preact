@@ -1,3 +1,3 @@
-import { createFrameworkApp } from './framework'
+import { createPreactStartApp } from 'preact-start'
 
-export default createFrameworkApp()
+export default createPreactStartApp()
