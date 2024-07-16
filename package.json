@@ -4,7 +4,7 @@
   "description": "",
   "type": "module",
   "scripts": {
-    "dev": "yarn link preact-start && yarn link preact && yarn link preact-router && vinxi dev",
+    "dev": "vinxi dev",
     "build": "vinxi build",
     "start": "vinxi start"
   },
@@ -15,6 +15,7 @@
     "@preact/preset-vite": "^2.8.3",
     "preact": "^10.22.1",
     "preact-router": "^4.1.2",
+    "preact-start": "^0.0.20",
     "vinxi": "^0.3.14"
   }
 }
