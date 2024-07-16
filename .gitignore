@@ -12,6 +12,7 @@ stats.html
 app.config.timestamp_*
 
 .vinxi
+yarn-error.log
 
 dist
 
