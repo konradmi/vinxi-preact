@@ -1,3 +1,5 @@
+# [ARCHIVED] MOVED TO the preact-start repository
+
 # vinxi-preact
 
 A small PoC Preact metaframework built on top of Vinxi.
